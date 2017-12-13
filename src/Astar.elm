@@ -2,7 +2,7 @@ module AStar exposing (..)
 
 import Grid exposing (Grid, Position, create, height, width)
 import Maze exposing (Maze, validNeighbours)
-
+import Maybe.Extra
 
 type alias Distance =
     Int
@@ -46,7 +46,7 @@ setDistanceOfNeighbours maze ( currentPositions, distance, distances ) =
 
         applyDistance : Position -> Distances -> Distances
         applyDistance position distances =
-            Grid.set position distance distances
+            Grid.set position (Just distance) distances
 
         --invoke validNeighbours maze on ever element of current positions (and flatten it using concatMap)
         currentNeighbours =
